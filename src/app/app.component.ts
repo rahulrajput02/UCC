@@ -17,6 +17,7 @@ export class AppComponent {
   juisdictions;
   selectedState;
   collateralOption;
+  savedSuccess = false;
 
   angularForm = new FormGroup({
     newFillingRef: new FormControl(),
@@ -192,9 +193,26 @@ export class AppComponent {
       "Collateral_Type": collateralType, "Type_of_Attachment": attachmentType, "Collateral_Is": collateralIS
     };
 
-    this.httpClient.post(environment.postNewFilling, myobj)
-      .subscribe();
 
-    console.log(myobj);
+    this.httpClient.post(environment.postNewFilling, myobj)
+      .subscribe(
+        response => {
+          console.log(1);
+          this.savedSuccess = true;
+          console.log(response);
+        },
+
+        err => {
+          console.log("Error Ocurred" + err);
+
+          var hashToBlock = {
+            "$class": "org.example.mynetwork.NewFilling",
+            "hashId": '0000000'
+          }
+
+          this.httpClient.post('http://localhost:5000/api/org.example.mynetwork.NewFilling', hashToBlock)
+            .subscribe();
+        }
+      )
   }
 }

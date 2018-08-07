@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  getDebtorAPI : 'http://192.168.2.223:3000/getDebtor',
-  getSecuredPartyAPI : 'http://192.168.2.223:3000/getsecuredparties',
-  getCollateralAPI : 'http://192.168.2.223:3000/getcollaterol',
-  getStatesAPI : 'http://192.168.2.223:3000/getstates',
-  getJurisdictionAPI : 'http://192.168.2.223:3000/getjurisdictions',
-  postNewFilling : 'http://192.168.2.223:3000/submitdoc'
+  getDebtorAPI: 'http://localhost:3000/getDebtor',
+  getSecuredPartyAPI: 'http://localhost:3000/getsecuredparties',
+  getCollateralAPI: 'http://localhost:3000/getcollaterol',
+  getStatesAPI: 'http://localhost:3000/getstates',
+  getJurisdictionAPI: 'http://localhost:3000/getjurisdictions',
+  postNewFilling: 'http://localhost:3000/submitdoc'
 };
 
 /*
