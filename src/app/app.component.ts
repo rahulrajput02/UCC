@@ -194,24 +194,50 @@ export class AppComponent {
     };
 
 
-    this.httpClient.post(environment.postNewFilling, myobj)
+    this.httpClient.post(environment.postNewFilling, myobj, { responseType: 'text' })
       .subscribe(
         response => {
-          console.log(1);
-          this.savedSuccess = true;
           console.log(response);
+          var hashFromResp = response;
+
+          var hashToBlock = {
+            "$class": "org.example.mynetwork.NewFilling",
+            "hashId": response
+          }
+
+          this.httpClient.post(environment.postToBlockChain, hashToBlock)
+            .subscribe(
+              response => {
+                this.httpClient.get(environment.getNewFillingFromBlock + hashFromResp)
+                  .subscribe(
+                    response => {
+                      this.savedSuccess = true;
+                      this.angularForm.reset();
+
+                      var submitTrans = {
+                        "$class": "org.example.mynetwork.StoreHash",
+                        "newFilling": "resource:org.example.mynetwork.NewFilling#" + response["hashId"],
+                        "transactionId": "",
+                        "timestamp": new Date()
+                      }
+
+                      this.httpClient.post(environment.postHashToBlock, submitTrans)
+                        .subscribe(
+                          response => {
+                            console.log(response["transactionId"]);
+                            window.setInterval(reload, 1000);
+
+                            function reload() {
+                              window.location.reload();
+                            }
+                          });
+                    });
+              }
+            );
         },
 
         err => {
           console.log("Error Ocurred" + err);
-
-          var hashToBlock = {
-            "$class": "org.example.mynetwork.NewFilling",
-            "hashId": '0000000'
-          }
-
-          this.httpClient.post('http://localhost:5000/api/org.example.mynetwork.NewFilling', hashToBlock)
-            .subscribe();
         }
       )
   }

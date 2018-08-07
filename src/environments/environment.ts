@@ -9,7 +9,10 @@ export const environment = {
   getCollateralAPI: 'http://localhost:3000/getcollaterol',
   getStatesAPI: 'http://localhost:3000/getstates',
   getJurisdictionAPI: 'http://localhost:3000/getjurisdictions',
-  postNewFilling: 'http://localhost:3000/submitdoc'
+  postNewFilling: 'http://localhost:3000/submitdoc',
+  postToBlockChain: 'http://localhost:5000/api/org.example.mynetwork.NewFilling',
+  getNewFillingFromBlock: 'http://localhost:5000/api/org.example.mynetwork.NewFilling/',
+  postHashToBlock : 'http://localhost:5000/api/org.example.mynetwork.StoreHash'
 };
 
 /*
