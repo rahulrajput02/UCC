@@ -12,7 +12,8 @@ export const environment = {
   postNewFilling: 'http://localhost:3000/submitdoc',
   postToBlockChain: 'http://localhost:5000/api/org.example.mynetwork.NewFilling',
   getNewFillingFromBlock: 'http://localhost:5000/api/org.example.mynetwork.NewFilling/',
-  postHashToBlock : 'http://localhost:5000/api/org.example.mynetwork.StoreHash'
+  postHashToBlock : 'http://localhost:5000/api/org.example.mynetwork.StoreHash',
+  postTransactionId : 'http://localhost:3000/postTransactionId'
 };
 
 /*

@@ -225,11 +225,21 @@ export class AppComponent {
                         .subscribe(
                           response => {
                             console.log(response["transactionId"]);
-                            window.setInterval(reload, 1000);
 
-                            function reload() {
-                              window.location.reload();
-                            }
+                            const objTran = { "transactionId": response["transactionId"] };
+
+                            this.httpClient.post(environment.postTransactionId, objTran, { responseType: 'text' })
+                              .subscribe(
+                                response => {
+                                  console.log(response);
+                                }
+                              );
+
+                            // window.setInterval(reload, 1000);
+
+                            // function reload() {
+                            //   window.location.reload();
+                            // }
                           });
                     });
               }
