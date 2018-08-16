@@ -7,11 +7,13 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="heading">
         <h2>
-          Generated Certificates
-          <img class="bottomImage" src="https://image.flaticon.com/icons/png/512/58/58679.png">
+          Saved Fillings
+          <!-- <img class="bottomImage" src="https://image.flaticon.com/icons/png/512/58/58679.png"> -->
         </h2>
       </div>
     </div>
+    <br>
+    <br>
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
@@ -23,10 +25,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of fillingData">
-          <td>{{data.sname}}</td>
-          <td>{{data.Sbranch}}</td>
-          <td>{{data.year}}</td>
-          <td>{{data.Degree}}</td>
+          <td>{{data.id}}</td>
+          <td>{{data.PDF_Hash}}</td>
+          <td>{{data.Pdf_Path}}</td>
+          <td>{{data.Transaction_ID}}</td>
         </tr>
       </tbody>
     </table>
