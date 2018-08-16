@@ -13,7 +13,8 @@ export const environment = {
   postToBlockChain: 'http://localhost:5000/api/org.example.mynetwork.NewFilling',
   getNewFillingFromBlock: 'http://localhost:5000/api/org.example.mynetwork.NewFilling/',
   postHashToBlock : 'http://localhost:5000/api/org.example.mynetwork.StoreHash',
-  postTransactionId : 'http://localhost:3000/postTransactionId'
+  postTransactionId : 'http://localhost:3000/postTransactionId',
+  getDataFromDB : 'http://localhost:3000/showFilling'
 };
 
 /*
