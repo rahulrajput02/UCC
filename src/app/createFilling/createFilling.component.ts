@@ -18,6 +18,8 @@ export class createFillingComponent {
   selectedState;
   collateralOption;
   savedSuccess = false;
+  validateBlock;
+  validateButton = false;
 
   angularForm = new FormGroup({
     newFillingRef: new FormControl(),
@@ -224,6 +226,8 @@ export class createFillingComponent {
                       this.httpClient.post(environment.postHashToBlock, submitTrans)
                         .subscribe(
                           response => {
+                            console.log(response);
+                            this.validateBlock = response;
                             console.log(response["transactionId"]);
 
                             const objTran = { "transactionId": response["transactionId"] };
@@ -232,6 +236,7 @@ export class createFillingComponent {
                               .subscribe(
                                 response => {
                                   console.log(response);
+                                  this.validateButton = true;
                                 }
                               );
 
@@ -250,5 +255,10 @@ export class createFillingComponent {
           console.log("Error Ocurred" + err);
         }
       )
+  }
+
+  validate() {
+    var validateObj = { "Transaction ID": this.validateBlock["transactionId"], "Timestamp": this.validateBlock["timestamp"] }
+    console.log(validateObj);
   }
 }

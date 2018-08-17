@@ -1,14 +1,13 @@
 <div>
   <a href="">
-    <img class="logo2" src="https://www.ibuildamerica-ohio.com/wp-content/uploads/2017/08/icon-yellow-university.svg">
+    <img class="logo2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyuZ6x3zINVWsvpCMCeqXYDgARqcwoO42EOXqzGe30o653HhUg">
   </a>
 
   <div class="container2">
     <div class="jumbotron jumbotron-fluid">
       <div class="heading">
         <h2>
-          Saved Fillings
-          <!-- <img class="bottomImage" src="https://image.flaticon.com/icons/png/512/58/58679.png"> -->
+          UCC Fillings Summary
         </h2>
       </div>
     </div>
@@ -19,21 +18,28 @@
         <tr>
           <th>ID</th>
           <th>PDF Hash</th>
-          <th>PDF Path</th>
           <th>Transaction Id</th>
+          <th>Filling Docs</th>
+          <th>Validate</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of fillingData">
           <td>{{data.id}}</td>
           <td>{{data.PDF_Hash}}</td>
-          <td>{{data.Pdf_Path}}</td>
           <td>{{data.Transaction_ID}}</td>
+          <td>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4r2ZjW06FOGw5YKI0t9BJZm3N1l8_F5tkCLVyF5yMjHEShGrJrg" style="width: 27px"
+            />
+          </td>
+          <td>
+            <button class="popup" (click)="validateButton(data.Transaction_ID)">Click</button>
+          </td>
         </tr>
       </tbody>
     </table>
-    <div *ngIf='submit' class="submitToBlockchainMessage">
-      <strong>Succesfully submitted to Blockchain!</strong>
-    </div>
+    <!-- <div *ngIf='validate' class="submitToBlockchainMessage">
+      <div>{{transactionData}}</div>
+    </div> -->
   </div>
 </div>
