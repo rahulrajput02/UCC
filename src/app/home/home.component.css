@@ -27,6 +27,13 @@
   background-color: #192845eb;
 }
 
+.backImage {
+  width: 2%;
+  float: right;
+  margin-top: 2%;
+  margin-right: 4%;
+}
+
 .jumbotron-fluid {
   border-radius: 6px;
 }

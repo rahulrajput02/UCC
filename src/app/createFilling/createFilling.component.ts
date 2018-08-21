@@ -237,14 +237,13 @@ export class createFillingComponent {
                                 response => {
                                   console.log(response);
                                   this.validateButton = true;
+                                  window.setInterval(reload, 2500);
+
+                                  function reload() {
+                                    window.location.reload();
+                                  }
                                 }
                               );
-
-                            // window.setInterval(reload, 1000);
-
-                            // function reload() {
-                            //   window.location.reload();
-                            // }
                           });
                     });
               }
