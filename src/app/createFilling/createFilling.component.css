@@ -15,6 +15,11 @@
   padding: 2%;
 }
 
+.spinner {
+  width: 8.6%;
+  margin-left: 4%;
+}
+
 /* .form-group[_ngcontent-c0] {
     margin-bottom: 1rem;
 } */

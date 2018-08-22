@@ -343,6 +343,8 @@
           Create Filling
         </button>
 
+        <img *ngIf="buttonClicked && saveState" src="https://www.cityofmadera.ca.gov/wp-content/uploads/2017/10/preloader.gif" class="spinner">
+
         <div class="savedMessage" *ngIf="savedSuccess">
           <strong>Details are submitted to Blockchain!</strong>
         </div>
@@ -350,13 +352,3 @@
     </div>
   </div>
 </form>
-
-<!-- <br>
-<div class="container">
-  <div *ngIf="validateButton" class="card">
-    <div class="card-body">
-      <br>
-      <button *ngIf="validateButton" (click)="validate()">Validate</button>
-    </div>
-  </div>
-</div> -->

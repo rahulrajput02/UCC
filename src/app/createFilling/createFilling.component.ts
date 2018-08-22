@@ -18,8 +18,9 @@ export class createFillingComponent {
   selectedState;
   collateralOption;
   savedSuccess = false;
+  saveState = true;
   validateBlock;
-  validateButton = false;
+  buttonClicked = false;
 
   angularForm = new FormGroup({
     newFillingRef: new FormControl(),
@@ -195,6 +196,7 @@ export class createFillingComponent {
       "Collateral_Type": collateralType, "Type_of_Attachment": attachmentType, "Collateral_Is": collateralIS
     };
 
+    this.buttonClicked = true;
 
     this.httpClient.post(environment.postNewFilling, myobj, { responseType: 'text' })
       .subscribe(
@@ -213,9 +215,6 @@ export class createFillingComponent {
                 this.httpClient.get(environment.getNewFillingFromBlock + hashFromResp)
                   .subscribe(
                     response => {
-                      this.savedSuccess = true;
-                      this.angularForm.reset();
-
                       var submitTrans = {
                         "$class": "org.example.mynetwork.StoreHash",
                         "newFilling": "resource:org.example.mynetwork.NewFilling#" + response["hashId"],
@@ -226,7 +225,8 @@ export class createFillingComponent {
                       this.httpClient.post(environment.postHashToBlock, submitTrans)
                         .subscribe(
                           response => {
-                            console.log(response);
+                            this.savedSuccess = true;
+                            this.saveState = false;
                             this.validateBlock = response;
                             console.log(response["transactionId"]);
 
@@ -236,7 +236,6 @@ export class createFillingComponent {
                               .subscribe(
                                 response => {
                                   console.log(response);
-                                  this.validateButton = true;
                                   window.setInterval(reload, 2500);
 
                                   function reload() {
