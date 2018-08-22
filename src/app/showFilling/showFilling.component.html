@@ -29,8 +29,10 @@
           <td>{{data.PDF_Hash}}</td>
           <td>{{data.Transaction_ID}}</td>
           <td>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4r2ZjW06FOGw5YKI0t9BJZm3N1l8_F5tkCLVyF5yMjHEShGrJrg" style="width: 27px"
-            />
+            <a class="menu_links" (click)="pdfDownload(data.Pdf_Path)">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4r2ZjW06FOGw5YKI0t9BJZm3N1l8_F5tkCLVyF5yMjHEShGrJrg" style="width: 27px"
+              />
+            </a>
           </td>
           <td>
             <button class="popup" (click)="validateButton(data.Transaction_ID)">Click</button>
@@ -38,8 +40,5 @@
         </tr>
       </tbody>
     </table>
-    <!-- <div *ngIf='validate' class="submitToBlockchainMessage">
-      <div>{{transactionData}}</div>
-    </div> -->
   </div>
 </div>

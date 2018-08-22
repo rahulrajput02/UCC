@@ -14,6 +14,7 @@ export class showFillingComponent {
     studentData;
     fillingData;
     transactionData;
+    fileUrl;
 
 
     constructor(private httpClient: HttpClient, private routes: Router) { }
@@ -41,8 +42,31 @@ export class showFillingComponent {
                     this.transactionData = JSON.stringify(response, null, "\t");
                     alert(this.transactionData);
                     console.log(this.transactionData);
-                    // this.validate = true;
                 }
             )
+    }
+
+    pdfDownload(pdfPath) {
+        console.log(pdfPath);
+        const data = { "Pdf_Path": pdfPath };
+        this.httpClient.post(environment.postPdf, data, { responseType: 'text' })
+            .subscribe(response => {
+                console.log(response);
+
+                this.httpClient.get(environment.getPdf, { responseType: 'arraybuffer' })
+                    .subscribe(response => {
+                        console.log(response);
+                        var blob = new Blob([response], { type: 'application/pdf' });
+                        this.fileUrl = window.URL.createObjectURL(blob);
+                        var link = document.createElement('a');
+                        document.body.appendChild(link);
+                        link.setAttribute('style', 'display: none');
+                        link.href = this.fileUrl;
+                        link.download = "fillingDocs.pdf";
+                        link.click();
+                        window.URL.revokeObjectURL(this.fileUrl);
+                        link.remove();
+                    })
+            });
     }
 }

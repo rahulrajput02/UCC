@@ -15,7 +15,9 @@ export const environment = {
   postHashToBlock : 'http://localhost:5000/api/org.example.mynetwork.StoreHash',
   getTransactionDetails : 'http://localhost:5000/api/org.example.mynetwork.StoreHash/',
   postTransactionId : 'http://localhost:3000/postTransactionId',
-  getDataFromDB : 'http://localhost:3000/showFilling'
+  getDataFromDB : 'http://localhost:3000/showFilling',
+  postPdf : 'http://localhost:3000/getpdf',
+  getPdf : 'http://localhost:3000/getpdf',
 };
 
 /*
