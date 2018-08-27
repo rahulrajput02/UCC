@@ -58,14 +58,19 @@ export class showFillingComponent {
                         console.log(response);
                         var blob = new Blob([response], { type: 'application/pdf' });
                         this.fileUrl = window.URL.createObjectURL(blob);
-                        var link = document.createElement('a');
-                        document.body.appendChild(link);
-                        link.setAttribute('style', 'display: none');
-                        link.href = this.fileUrl;
-                        link.download = "fillingDocs.pdf";
-                        link.click();
-                        window.URL.revokeObjectURL(this.fileUrl);
-                        link.remove();
+
+                        //Open PDF in new tab
+                        window.open(this.fileUrl);
+
+                        //***** Download PDF *****//
+                        // var link = document.createElement('a');
+                        // document.body.appendChild(link);
+                        // link.setAttribute('style', 'display: none');
+                        // link.href = this.fileUrl;
+                        // link.download = "fillingDocs.pdf";
+                        // link.click();
+                        // window.URL.revokeObjectURL(this.fileUrl);
+                        // link.remove();
                     })
             });
     }
