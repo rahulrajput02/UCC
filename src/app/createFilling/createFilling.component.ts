@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { AppService } from '../app.service';
+import { WebsocketService } from '../websocket.service';
 
 @Component({
   selector: 'createFilling-root',
   templateUrl: './createFilling.component.html',
-  styleUrls: ['./createFilling.component.css']
+  styleUrls: ['./createFilling.component.css'],
+  providers: [AppService, WebsocketService]
 })
 export class createFillingComponent {
   title = 'createFilling';
@@ -21,6 +24,8 @@ export class createFillingComponent {
   saveState = true;
   validateBlock;
   buttonClicked = false;
+  messages = [];
+  connection;
 
   angularForm = new FormGroup({
     newFillingRef: new FormControl(),
@@ -36,8 +41,12 @@ export class createFillingComponent {
     postalCodeS: new FormControl(),
     attachmentDesc: new FormControl()
   });
-  constructor(private fb: FormBuilder, private httpClient: HttpClient) {
+
+  constructor(private fb: FormBuilder, private httpClient: HttpClient, private websocketService: WebsocketService) {
     this.createForm();
+    websocketService.messages.subscribe(msg => {
+      console.log("Response from websocket: " + msg);
+    });
   }
 
   createForm() {
@@ -231,16 +240,15 @@ export class createFillingComponent {
                             console.log(response["transactionId"]);
 
                             const objTran = { "transactionId": response["transactionId"] };
-
                             this.httpClient.post(environment.postTransactionId, objTran, { responseType: 'text' })
                               .subscribe(
                                 response => {
                                   console.log(response);
-                                  window.setInterval(reload, 2500);
+                                  // window.setInterval(reload, 2500);
 
-                                  function reload() {
-                                    window.location.reload();
-                                  }
+                                  // function reload() {
+                                  //   window.location.reload();
+                                  // }
                                 }
                               );
                           });

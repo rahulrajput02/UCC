@@ -12,6 +12,8 @@ import { createFillingComponent } from './createFilling/createFilling.component'
 import { showFillingComponent } from './showFilling/showFilling.component';
 import { HomeComponent } from './home/home.component';
 
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +23,8 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-
+    HttpModule,
     HttpClientModule,
-
     ReactiveFormsModule,
     RouterModule,
     routing

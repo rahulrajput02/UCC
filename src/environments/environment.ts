@@ -18,6 +18,7 @@ export const environment = {
   getDataFromDB : 'http://localhost:3000/showFilling',
   postPdf : 'http://localhost:3000/getpdf',
   getPdf : 'http://localhost:3000/getpdf',
+  websocketUrl : 'ws://localhost:5000'
 };
 
 /*
